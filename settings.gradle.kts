@@ -57,6 +57,6 @@ includeBuild("build-logic")
 include("worldguard-libs")
 include("worldguard-libs:core")
 
-listOf("bukkit", "core").forEach {
+listOf("bukkit", "core", "neoforge").forEach {
     include("worldguard-$it")
 }
