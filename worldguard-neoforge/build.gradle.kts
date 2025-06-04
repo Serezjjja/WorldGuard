@@ -1,7 +1,13 @@
 plugins {
+ zsruir-codex/портировать-плагин-в-мод-для-neoforge
     `java-library`
     id("net.neoforged.gradle.userdev") version "7.0.170"
     id("buildlogic.platform")
+ =======
+    id("java-library")
+    id("maven-publish")
+    id("net.neoforged.gradle.userdev") version "7.0.170"
+ version/7.0.x
 }
 
 base.archivesName.set("worldguard-neoforge")
@@ -17,6 +23,7 @@ repositories {
 dependencies {
     implementation(project(":worldguard-core"))
     implementation(libs.worldedit.core)
+ zsruir-codex/портировать-плагин-в-мод-для-neoforge
     implementation("net.neoforged:neoforge:${project.property("neo_version")}") {
         // Minecraft already bundles common libraries, use our versions
         exclude(group = "com.google.code.gson", module = "gson")
@@ -30,5 +37,15 @@ dependencies {
 sourceSets {
     main {
         resources.srcDir("src/generated/resources")
+=======
+    implementation("net.neoforged:neoforge:${project.property("neo_version")}")
+}
+
+sourceSets.main.resources.srcDir("src/generated/resources")
+
+publishing {
+    publications.register<MavenPublication>("maven") {
+        from(components["java"])
+ version/7.0.x
     }
 }
